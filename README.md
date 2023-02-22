@@ -32,5 +32,3 @@ $ systemctl start getip.service
 $ systemctl status getip
 ```
 
-
-
