@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+""" Open JSON files Book """
 import json
 import config
 from posts_func import get_posts_all
@@ -25,6 +25,7 @@ def get_bookmark_post_id():
 
 
 def save_bookmarks(bookmarks, path=config.BOOKMARKS_PATH):
+    """ Save bookmarks """
     with open(path, 'w', encoding='utf=8') as file:
         json.dump(bookmarks, file, indent=4, ensure_ascii=False)
 
@@ -42,6 +43,6 @@ def remove_bookmarks(post_id):
     """ Удаляет закладки """
     del_bookmarks = get_bookmarks(config.BOOKMARKS_PATH)
     # удаление элемента из словаря
-    nd = [item for item in del_bookmarks if item["post_id"] != post_id]
-    save_bookmarks(nd)
+    delete_bookmarks = [item for item in del_bookmarks if item["post_id"] != post_id]
+    save_bookmarks(delete_bookmarks)
     return del_bookmarks
