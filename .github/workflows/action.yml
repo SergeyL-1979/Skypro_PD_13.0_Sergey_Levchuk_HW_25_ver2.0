@@ -13,11 +13,11 @@ on:
   push:
     branches: ["main"]
 
-env:
-  PROJECT_ID: YOUR_PROJECT_ID # TODO: update Google Cloud project id
-  GAR_LOCATION: YOUR_GAR_LOCATION # TODO: update Artifact Registry location
-  SERVICE: YOUR_SERVICE_NAME # TODO: update Cloud Run service name
-  REGION: YOUR_SERVICE_REGION # TODO: update Cloud Run service region
+#env:
+#  PROJECT_ID: YOUR_PROJECT_ID #  update Google Cloud project id
+#  GAR_LOCATION: YOUR_GAR_LOCATION #  update Artifact Registry location
+#  SERVICE: YOUR_SERVICE_NAME #  update Cloud Run service name
+#  REGION: YOUR_SERVICE_REGION #  update Cloud Run service region
 
 jobs:
   build_and_push:
