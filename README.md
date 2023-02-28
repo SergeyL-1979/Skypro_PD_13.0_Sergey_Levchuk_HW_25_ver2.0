@@ -41,3 +41,10 @@ $ systemctl status flask_app
     docker-compose up --build -d
     docker-compose logs
     docker exec -it backend-flask /bin/bash
+
+Так же команда для запуска контейнера 
+
+    docker-compose up -d
+Остановить команда контейнер
+
+    docker-compose down
