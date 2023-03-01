@@ -1,0 +1,47 @@
+name: Build and Deploy to Cloud Run
+
+on:
+  push:
+    branches: ["main"]
+
+
+#env:
+#  PROJECT_ID: YOUR_PROJECT_ID #  update Google Cloud project id
+#  GAR_LOCATION: YOUR_GAR_LOCATION #  update Artifact Registry location
+#  SERVICE: YOUR_SERVICE_NAME #  update Cloud Run service name
+#  REGION: YOUR_SERVICE_REGION #  update Cloud Run service region
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-20.04
+#    strategy:
+#      matrix:
+#        python-version: [ "3.8", "3.9", "3.10" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # BEGIN - Docker auth and build (NOTE: If you already have a container image, these Docker steps can be omitted)
+      # НАЧАЛО — аутентификация и сборка Docker (ПРИМЕЧАНИЕ. Если у вас уже есть образ контейнера, эти шаги Docker можно пропустить)
+      # Authenticate DockerHub
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          logout: true
+
+      - name: Build and Push Container
+#        run: |-
+#          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}" ./
+#          docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
+        run: |- 
+          docker build -t sergdef/deploy_flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+          docker push sergdef/deploy_flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+      # ==============  END - Docker auth and build  ==========================================
+
+      - name: Pylint
+        uses: actions/checkout@v3
+      - name: Analysing the code with pylint
+        run: |
+          pylint $(git ls-files '*.py')
