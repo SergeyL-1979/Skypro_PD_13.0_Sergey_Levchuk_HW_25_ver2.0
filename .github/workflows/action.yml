@@ -40,8 +40,8 @@ jobs:
           docker push sergdef/deploy_flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
       # ==============  END - Docker auth and build  ==========================================
 
-#      - name: Pylint
-#        uses: actions/checkout@v3
+      - name: Pylint
+        uses: actions/checkout@v3
       - name: Analysing the code with pylint
         run: |
           pylint $(git ls-files '*.py')
