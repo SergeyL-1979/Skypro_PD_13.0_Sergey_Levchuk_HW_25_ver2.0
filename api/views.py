@@ -1,3 +1,4 @@
+""" VIEWS """
 from flask import Blueprint, jsonify
 
 from posts_func import get_posts_all, get_post_by_pk
@@ -20,4 +21,3 @@ def single_post_api(post_id):
     logger_api.info(f"Запрос /api/posts/{post_id}")
     post = get_post_by_pk(post_id)
     return jsonify(post), 200
-
