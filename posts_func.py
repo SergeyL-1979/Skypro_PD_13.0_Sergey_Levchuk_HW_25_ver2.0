@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+""" POSTS """
 import json
 import config
 
@@ -22,17 +22,9 @@ def search_for_posts(query):
     return content_search
 
 
-# def get_posts_by_user(user_name):
-#     """ Возвращает посты определенного пользователя. Функция должна вызывать ошибку ValueError если такого
-#     пользователя нет и пустой список, если у пользователя нет постов. """
-#     poster_name = []
-#     users_name = get_posts_all()
-#     for user in users_name:
-#         if user_name in user['poster_name']:
-#             poster_name.append(user)
-#     return poster_name
 def get_posts_by_user(user_name):
-    """ Возвращает посты определенного пользователя. Функция должна вызывать ошибку ValueError если такого
+    """ Возвращает посты определенного пользователя.
+    Функция должна вызывать ошибку ValueError если такого
     пользователя нет и пустой список, если у пользователя нет постов. """
     poster_name = []
     is_user_exist = False
@@ -46,11 +38,11 @@ def get_posts_by_user(user_name):
     return poster_name
 
 
-def get_post_by_pk(pk):
+def get_post_by_pk(pk_id):
     """ Возвращает один пост по его идентификатору. """
     posts_pk = get_posts_all()
     for post in posts_pk:
-        if post['pk'] == pk:
+        if post['pk'] == pk_id:
             return post
 
 
