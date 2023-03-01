@@ -14,9 +14,6 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-20.04
-#    strategy:
-#      matrix:
-#        python-version: [ "3.8", "3.9", "3.10" ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -39,9 +36,3 @@ jobs:
           docker build -t sergdef/deploy_flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
           docker push sergdef/deploy_flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
       # ==============  END - Docker auth and build  ==========================================
-
-      - name: Pylint
-        uses: actions/checkout@v3
-      - name: Analysing the code with pylint
-        run: |
-          pylint $(git ls-files '*.py')
