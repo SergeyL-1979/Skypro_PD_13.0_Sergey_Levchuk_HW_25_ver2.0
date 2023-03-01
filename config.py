@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+""" CONFIG """
 import os.path
 # basedir = os.path.abspath(os.path.dirname(__file__))
 

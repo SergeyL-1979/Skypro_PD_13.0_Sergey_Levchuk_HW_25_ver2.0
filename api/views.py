@@ -18,6 +18,6 @@ def posts_api():
 @api_blueprint.route('/posts/<int:post_id>')
 def single_post_api(post_id):
     """ Возвращает один пост в виде JSON-словаря """
-    logger_api.info(f"Запрос /api/posts/{post_id}")
+    logger_api.info("Запрос /api/posts/%s", post_id)
     post = get_post_by_pk(post_id)
     return jsonify(post), 200
