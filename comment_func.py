@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+""" COMMENT """
 import json
 import config
 from pprint import pprint
@@ -13,17 +13,9 @@ def get_comments_all(path=config.COMMENT_PATH):
     return data
 
 
-# def get_comments_by_post_id(post_id):
-#     """ – возвращает комментарии определенного поста. Функция должна вызывать ошибку ValueError если такого
-#     поста нет и пустой список, если у поста нет комментов. """
-#     post_ids = []
-#     comments_posts = get_comments_all(config.COMMENT_PATH)
-#     for comment in comments_posts:
-#         if post_id == comment['post_id']:
-#             post_ids.append(comment)
-#     return post_ids
 def get_comments_by_post_id(post_id):
-    """ – возвращает комментарии определенного поста. Функция должна вызывать ошибку ValueError если такого
+    """ – возвращает комментарии определенного поста.
+    Функция должна вызывать ошибку ValueError если такого
     поста нет и пустой список, если у поста нет комментов. """
     post_ids = []
     is_comment_exist = False

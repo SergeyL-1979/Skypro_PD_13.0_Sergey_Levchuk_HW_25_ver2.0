@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+""" VIEWS """
 from flask import Blueprint, redirect, render_template, request
 from posts_func import get_posts_all, get_post_by_pk, search_for_posts, get_posts_by_user
 from comment_func import get_comments_by_post_id, add_comment
@@ -12,6 +12,7 @@ main_bp = Blueprint('main_bp', __name__, template_folder='templates', static_fol
 
 @main_bp.route('/')
 def page_index():
+    """ PAGE INDEX """
     all_posts = get_posts_all()
     all_bookmarks = get_bookmarks()
     return render_template("index.html", posts=all_posts, all_bookmarks=all_bookmarks)
@@ -19,6 +20,7 @@ def page_index():
 
 @main_bp.route('/post/<int:post_id>')
 def page_post(post_id):
+    """ PAGE POST """
     user_post = get_post_by_pk(post_id)
     comments = get_comments_by_post_id(post_id)
     comments_count = len(comments)
@@ -33,6 +35,7 @@ def page_post(post_id):
 
 @main_bp.route('/post', methods=["POST"])
 def save_comment_post():
+    """ SAVE COMMENT """
     post_id = request.form.get("post_id")
     commenter_name = request.form.get("user")
     comment = request.form.get("comment")
@@ -42,12 +45,14 @@ def save_comment_post():
 
 @main_bp.route('/users/<username>')
 def posts_user(username):
+    """ POSTS USERNAME """
     user_posts = get_posts_by_user(username)
     return render_template("user-feed.html", user_posts=user_posts)
 
 
 @main_bp.route('/search/')
 def search_post():
+    """ SEARCH POSTS """
     posts_search = request.args.get('s').lower()
     posts = search_for_posts(posts_search)
     if not posts_search:
@@ -57,6 +62,7 @@ def search_post():
 
 @main_bp.route('/bookmarks')
 def all_bookmark():
+    """ ALL BOOKMARKS """
     all_bookmarks = get_bookmarks()
     posts = get_bookmark_post_id()
     return render_template("bookmarks.html",
@@ -66,18 +72,20 @@ def all_bookmark():
 
 @main_bp.route('/bookmarks/add/<int:post_id>')
 def add_bookmark(post_id):
+    """ ADD BOOKMARKS """
     add_bookmarks(post_id)
     return redirect("/", code=302)
 
 
 @main_bp.route('bookmarks/remove/<int:post_id>')
 def remove_bookmark(post_id):
+    """ REMOVE BOOKMARKS """
     remove_bookmarks(post_id)
     return redirect("/", code=302)
 
 
 @main_bp.route('/tag/<tag_name>')
 def get_by_tag(tag_name):
+    """ GET TAGS """
     content = search_for_posts(tag_name)
     return render_template("tag.html", by_tag=content)
-
