@@ -6,11 +6,13 @@ version: '3.9'
 # Раздел, в котором будут описаны сервисы, начинается с 'services'.
 
 services:
-  flask:
+  flask_app:
     # Путь до Dockerfile
-    build: .
+    build:
+      context: .
     # Имя для создаваемого контейнера
     container_name: backend-flask
+    image: sergdef/deploy_flask_app
     # Создание переменных окружения в контейнере
     environment:
       # для отладки (при запуске в релиз убрать!)
@@ -26,6 +28,6 @@ services:
       - .:/backend
     # Открываем порт в контейнер
     # Порт, который будет смотреть наружу : порт который используется внутри контейнера
-    ports:
-      - "5000:5000"
+#    ports:
+#      - "5000:5000"
     command: flask run -h 0.0.0.0 -p 15000
