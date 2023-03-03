@@ -3,7 +3,7 @@ FROM python:3.9.5-slim
 
 # Устанавливаем рабочую директорию для проекта в контейнере
 WORKDIR /backend
-
+EXPOSE 80
 # Скачиваем/обновляем необходимые библиотеки для проекта
 COPY requirements.txt /backend
 RUN pip install --upgrade pip -r requirements.txt
