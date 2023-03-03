@@ -60,7 +60,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           # Указываем, какие файлы копировать
           source: "deploy/docker-compose.yaml"
-		  # Место на виртуальной машине, куда скопируются файлы
           target: "flask-app"
           strip_components: 1
 
