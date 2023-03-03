@@ -31,4 +31,4 @@ services:
 #    ports: # Проброс портов
 #      - "5000:5000"
 
-#    command: flask run -h 0.0.0.0 -p 80
+    command: flask run -h 0.0.0.0 -p 80
