@@ -12,4 +12,4 @@ RUN pip install --upgrade pip -r requirements.txt
 COPY . /backend
 
 # Устанавливаем порт, который будет использоваться для сервера
-CMD flask run -h 0.0.0.0 -p 5000
+CMD flask run -h 0.0.0.0 -p 80
