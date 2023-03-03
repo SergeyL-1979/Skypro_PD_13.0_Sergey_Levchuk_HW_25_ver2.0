@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # BEGIN - Docker auth and build (NOTE: If you already have a container image, these Docker steps can be omitted)
       # НАЧАЛО — аутентификация и сборка Docker (ПРИМЕЧАНИЕ. Если у вас уже есть образ контейнера, эти шаги Docker можно пропустить)
@@ -42,7 +42,7 @@ jobs:
     needs: build_and_push
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: render config
         run: |-
