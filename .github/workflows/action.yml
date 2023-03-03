@@ -48,7 +48,7 @@ jobs:
         run: |-
           mkdir deploy
           cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
-#          cat docker_ci_config.py | envsubst > deploy/docker_config.py
+#          cat Dockerfile | envsubst > deploy/Dockerfile
 
       # ===== BEGIN SSH EXIT =========
       - name: clone files to server
@@ -73,4 +73,4 @@ jobs:
           script: |-
             whoami
             cd flask-app
-            sudo -S docker-compose up -d
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose up -d
